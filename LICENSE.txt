@@ -1,6 +1,12 @@
 MIT License
 
+Copyright (c) 2023 NeoForged project
 Copyright (c) 2026 Minecraftweter
+
+This project is based on the NeoForged MDK template.
+The original template files are copyrighted by the NeoForged project.
+Original code added to this project, and modifications made to the template files,
+are copyrighted by Minecraftweter.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
