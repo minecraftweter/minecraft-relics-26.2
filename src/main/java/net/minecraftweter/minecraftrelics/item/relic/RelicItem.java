@@ -16,6 +16,7 @@ import java.util.function.Consumer;
 
 public class RelicItem extends Item {
     public final RelicRarity rarity;
+    public final RelicCategory category;
 
     public static final String tooltipTranslationKey = "tooltip." + MinecraftRelics.MOD_ID;
 
@@ -31,6 +32,7 @@ public class RelicItem extends Item {
                     )
         );
         this.rarity = rarity;
+        this.category = category;
     }
 
     @Override
@@ -39,8 +41,8 @@ public class RelicItem extends Item {
                                 @NonNull TooltipFlag tooltipFlag
     ) {
         if(Minecraft.getInstance().hasShiftDown()) {
-
             builder.accept(Component.translatable(tooltipTranslationKey + ".rarity", rarity.name));
+            builder.accept(Component.translatable(tooltipTranslationKey + ".category", category.name));
         } else {
             builder.accept(Component.translatable(tooltipTranslationKey + ".more_info"));
         }
