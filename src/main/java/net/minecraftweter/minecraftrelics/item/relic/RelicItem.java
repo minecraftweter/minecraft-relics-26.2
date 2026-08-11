@@ -15,9 +15,11 @@ import org.jspecify.annotations.NonNull;
 import java.util.function.Consumer;
 
 public class RelicItem extends Item {
+    public final RelicRarity rarity;
+
     public static final String tooltipTranslationKey = "tooltip." + MinecraftRelics.MOD_ID;
 
-    public RelicItem(String name) {
+    public RelicItem(String name, RelicRarity rarity) {
         super(
             new Item.Properties()
                     .stacksTo(1)
@@ -28,6 +30,7 @@ public class RelicItem extends Item {
                         )
                     )
         );
+        this.rarity = rarity;
     }
 
     @Override
@@ -37,6 +40,7 @@ public class RelicItem extends Item {
     ) {
         if(Minecraft.getInstance().hasShiftDown()) {
 
+            builder.accept(Component.translatable(tooltipTranslationKey + ".rarity", rarity.name));
         } else {
             builder.accept(Component.translatable(tooltipTranslationKey + ".more_info"));
         }
