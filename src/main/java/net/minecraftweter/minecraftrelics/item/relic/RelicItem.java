@@ -25,6 +25,8 @@ public class RelicItem extends Item {
         super(
             new Item.Properties()
                     .stacksTo(1)
+                    .component(ModDataComponents.RELIC_XP.get(), 0)
+                    .component(ModDataComponents.RELIC_LEVEL.get(), 1)
                     .setId(
                         ResourceKey.create(
                                 Registries.ITEM,
