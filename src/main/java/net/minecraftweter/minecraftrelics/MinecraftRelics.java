@@ -28,6 +28,7 @@ public class MinecraftRelics {
         modEventBus.addListener(this::commonSetup);
 
         ModItems.register(modEventBus);
+        ModCreativeModeTabs.register(modEventBus); // Na Blocks en Items
 
         // Register ourselves for server and other game events we are interested in.
         // Note that this is necessary if and only if we want *this* class (MinecraftRelics) to respond directly to events.
