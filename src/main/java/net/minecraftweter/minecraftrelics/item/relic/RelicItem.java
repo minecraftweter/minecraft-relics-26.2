@@ -10,6 +10,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraftweter.minecraftrelics.MinecraftRelics;
+import net.minecraftweter.minecraftrelics.item.ModDataComponents;
 import org.jspecify.annotations.NonNull;
 
 import java.util.function.Consumer;
@@ -17,11 +18,16 @@ import java.util.function.Consumer;
 public class RelicItem extends Item {
     public final RelicRarity rarity;
     public final RelicCategory category;
-    public final RelicAbility[] abilities;
+    public final RelicAbility.RelicAbilityFromLevel[] abilities;
 
     public static final String tooltipTranslationKey = "tooltip." + MinecraftRelics.MOD_ID;
 
-    public RelicItem(String name, RelicRarity rarity, RelicCategory category) {
+    public RelicItem(
+            String name,
+            RelicRarity rarity,
+            RelicCategory category,
+            RelicAbility.RelicAbilityFromLevel ... abilities
+    ) {
         super(
             new Item.Properties()
                     .stacksTo(1)
@@ -36,6 +42,7 @@ public class RelicItem extends Item {
         );
         this.rarity = rarity;
         this.category = category;
+        this.abilities = abilities;
     }
 
     @Override
@@ -47,8 +54,10 @@ public class RelicItem extends Item {
             builder.accept(Component.translatable(tooltipTranslationKey + ".rarity", rarity.name));
             builder.accept(Component.translatable(tooltipTranslationKey + ".category", category.name));
             builder.accept(Component.empty());
-            for(RelicAbility ability : abilities) {
-                builder.accept(ability.getTranslationComponent(itemStack));
+            for(RelicAbility.RelicAbilityFromLevel abilityFromLevel : abilities) {
+                if(abilityFromLevel.isActive(itemStack)) {
+                    builder.accept(abilityFromLevel.ability().getTranslationComponent(itemStack));
+                }
             }
             builder.accept(Component.empty());
             builder.accept(Component.translatable(tooltipTranslationKey + ".level",
