@@ -14,7 +14,7 @@ public class ModItems {
 
     public static final DeferredItem<Item> WIND_FEATHER_RELIC = ITEMS.register(
             "wind_feather_relic", () -> new RelicItem(
-                    "wind_feather_relic", RelicRarity.UNCOMMON, RelicCategory.DEFENSE
+                    "wind_feather_relic", RelicRarity.RARE, RelicCategory.MOVEMENT
             )
     );
 
