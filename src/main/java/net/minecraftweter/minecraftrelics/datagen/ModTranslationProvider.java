@@ -59,7 +59,8 @@ public class ModTranslationProvider extends LanguageProvider {
         add(RelicItem.tooltipTranslationKey + ".level", "Level: %s");
         add(RelicItem.tooltipTranslationKey + ".more_info", "Press §eShift§r for more information!");
 
-        add(RelicItem.tooltipTranslationKey + ".ability.wind_feather", "Reduces fall damage by %s");
+        add(RelicItem.tooltipTranslationKey + ".ability.reduce_fall_damage", "Reduces fall damage by %s");
+        add(RelicItem.tooltipTranslationKey + ".ability.increase_movement_speed", "Increases movement speed by %s");
     }
 
     private static String formatName(String name) {
