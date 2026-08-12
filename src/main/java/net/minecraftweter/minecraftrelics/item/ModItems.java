@@ -6,7 +6,7 @@ import net.minecraftweter.minecraftrelics.item.relic.RelicAbility;
 import net.minecraftweter.minecraftrelics.item.relic.RelicCategory;
 import net.minecraftweter.minecraftrelics.item.relic.RelicItem;
 import net.minecraftweter.minecraftrelics.item.relic.RelicRarity;
-import net.minecraftweter.minecraftrelics.item.relic.ability.WindFeatherAbility;
+import net.minecraftweter.minecraftrelics.item.relic.ability.ReduceFallDamageAbility;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -17,7 +17,7 @@ public class ModItems {
     public static final DeferredItem<Item> WIND_FEATHER_RELIC = ITEMS.register(
             "wind_feather_relic", () -> new RelicItem(
                     "wind_feather_relic", RelicRarity.UNCOMMON, RelicCategory.DEFENSE,
-                    new RelicAbility.RelicAbilityFromLevel(1, new WindFeatherAbility())
+                    new ReduceFallDamageAbility(1, 0.7f, 0.02f)
             )
     );
 
