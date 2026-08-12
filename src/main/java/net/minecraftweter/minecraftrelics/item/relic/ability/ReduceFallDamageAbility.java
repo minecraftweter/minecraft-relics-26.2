@@ -10,11 +10,12 @@ import net.minecraftweter.minecraftrelics.item.relic.RelicAbility;
 import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 
 public class ReduceFallDamageAbility extends RelicAbility {
-    public final float startValue, levelBonusValue;
-    public ReduceFallDamageAbility(int activationLevel, float startValue, float levelBonusValue) {
+    public final float startValue, levelBonusValue, maxValue;
+    public ReduceFallDamageAbility(int activationLevel, float startValue, float levelBonusValue, float maxValue) {
         super(activationLevel);
         this.startValue = startValue;
         this.levelBonusValue = levelBonusValue;
+        this.maxValue = maxValue;
     }
 
     @Override
@@ -33,6 +34,6 @@ public class ReduceFallDamageAbility extends RelicAbility {
     }
 
     private float getMultiplier(ItemStack stack) {
-        return startValue + ((stack.get(ModDataComponents.RELIC_LEVEL) - activationLevel) * levelBonusValue);
+        return Math.min(startValue + ((stack.get(ModDataComponents.RELIC_LEVEL) - activationLevel) * levelBonusValue), maxValue);
     }
 }

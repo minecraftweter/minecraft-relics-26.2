@@ -2,7 +2,6 @@ package net.minecraftweter.minecraftrelics.item;
 
 import net.minecraft.world.item.Item;
 import net.minecraftweter.minecraftrelics.MinecraftRelics;
-import net.minecraftweter.minecraftrelics.item.relic.RelicAbility;
 import net.minecraftweter.minecraftrelics.item.relic.RelicCategory;
 import net.minecraftweter.minecraftrelics.item.relic.RelicItem;
 import net.minecraftweter.minecraftrelics.item.relic.RelicRarity;
@@ -17,7 +16,7 @@ public class ModItems {
     public static final DeferredItem<Item> WIND_FEATHER_RELIC = ITEMS.register(
             "wind_feather_relic", () -> new RelicItem(
                     "wind_feather_relic", RelicRarity.UNCOMMON, RelicCategory.DEFENSE,
-                    new ReduceFallDamageAbility(1, 0.7f, 0.02f)
+                    new ReduceFallDamageAbility(1, 0.7f, 0.02f, 0.9f)
             )
     );
 
