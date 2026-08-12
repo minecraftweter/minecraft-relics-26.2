@@ -8,19 +8,23 @@ import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 import net.neoforged.neoforge.event.entity.player.AttackEntityEvent;
 
-public interface RelicAbility {
-    default void onUse(Player player, ItemStack relic) {}
-    default void onAttack(Player player, ItemStack relic, AttackEntityEvent attackEvent) {}
-    default void onHurt(Player player, ItemStack relic, LivingIncomingDamageEvent damageEvent) {}
-    default void onKill(Player player, ItemStack relic, LivingDeathEvent deathEvent, LivingIncomingDamageEvent damageEvent) {}
-    default void onTick(Player player, ItemStack relic) {}
-    default void onEquip(Player player, ItemStack relic) {}
-    default void onUnequip(Player player, ItemStack relic) {}
-    Component getTranslationComponent(ItemStack stack);
-
-    record RelicAbilityFromLevel(int level, RelicAbility ability) {
-        public boolean isActive(ItemStack stack) {
-            return stack.get(ModDataComponents.RELIC_LEVEL) >= level;
-        }
+public abstract class RelicAbility {
+    public final int activationLevel;
+    public RelicAbility(int activationLevel) {
+        this.activationLevel = activationLevel;
     }
+
+    public void onUse(Player player, ItemStack stack) {}
+    public void onAttack(Player player, ItemStack stack, AttackEntityEvent attackEvent) {}
+    public void onHurt(Player player, ItemStack stack, LivingIncomingDamageEvent damageEvent) {}
+    public void onKill(Player player, ItemStack stack, LivingDeathEvent deathEvent, LivingIncomingDamageEvent damageEvent) {}
+    public void onTick(Player player, ItemStack stack) {}
+    public void onEquip(Player player, ItemStack stack) {}
+    public void onUnequip(Player player, ItemStack stack) {}
+
+    public boolean isActive(ItemStack stack) {
+        return stack.get(ModDataComponents.RELIC_LEVEL) >= this.activationLevel;
+    }
+
+    public abstract Component getTranslationComponent(ItemStack stack);
 }
