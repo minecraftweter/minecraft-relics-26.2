@@ -2,7 +2,6 @@ package net.minecraftweter.minecraftrelics.item.relic.ability;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextColor;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftweter.minecraftrelics.MinecraftRelics;
 import net.minecraftweter.minecraftrelics.item.ModDataComponents;
