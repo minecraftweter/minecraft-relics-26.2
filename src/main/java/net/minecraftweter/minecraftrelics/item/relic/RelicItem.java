@@ -18,7 +18,7 @@ import java.util.function.Consumer;
 public class RelicItem extends Item {
     public final RelicRarity rarity;
     public final RelicCategory category;
-    public final RelicAbility.RelicAbilityFromLevel[] abilities;
+    public final RelicAbility[] abilities;
 
     public static final String tooltipTranslationKey = "tooltip." + MinecraftRelics.MOD_ID;
 
@@ -26,7 +26,7 @@ public class RelicItem extends Item {
             String name,
             RelicRarity rarity,
             RelicCategory category,
-            RelicAbility.RelicAbilityFromLevel ... abilities
+            RelicAbility ... abilities
     ) {
         super(
             new Item.Properties()
@@ -54,9 +54,9 @@ public class RelicItem extends Item {
             builder.accept(Component.translatable(tooltipTranslationKey + ".rarity", rarity.name));
             builder.accept(Component.translatable(tooltipTranslationKey + ".category", category.name));
             builder.accept(Component.empty());
-            for(RelicAbility.RelicAbilityFromLevel abilityFromLevel : abilities) {
-                if(abilityFromLevel.isActive(itemStack)) {
-                    builder.accept(abilityFromLevel.ability().getTranslationComponent(itemStack));
+            for(RelicAbility ability : abilities) {
+                if(ability.isActive(itemStack)) {
+                    builder.accept(ability.getTranslationComponent(itemStack));
                 }
             }
             builder.accept(Component.empty());
