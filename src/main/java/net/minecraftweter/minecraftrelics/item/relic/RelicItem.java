@@ -10,14 +10,15 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraftweter.minecraftrelics.MinecraftRelics;
+import net.minecraftweter.minecraftrelics.item.ModDataComponents;
 import org.jspecify.annotations.NonNull;
 
+import java.util.Objects;
 import java.util.function.Consumer;
 
 public class RelicItem extends Item {
     public final RelicRarity rarity;
     public final RelicCategory category;
-    public final RelicAbility[] abilities;
 
     public static final String tooltipTranslationKey = "tooltip." + MinecraftRelics.MOD_ID;
 
@@ -47,15 +48,11 @@ public class RelicItem extends Item {
             builder.accept(Component.translatable(tooltipTranslationKey + ".rarity", rarity.name));
             builder.accept(Component.translatable(tooltipTranslationKey + ".category", category.name));
             builder.accept(Component.empty());
-            for(RelicAbility ability : abilities) {
-                builder.accept(ability.getTranslationComponent(itemStack));
-            }
-            builder.accept(Component.empty());
             builder.accept(Component.translatable(tooltipTranslationKey + ".level",
-                    itemStack.get(ModDataComponents.RELIC_LEVEL.get()).toString()
+                    Objects.requireNonNull(itemStack.get(ModDataComponents.RELIC_LEVEL.get())).toString()
             ));
             builder.accept(Component.translatable(tooltipTranslationKey + ".xp",
-                    itemStack.get(ModDataComponents.RELIC_XP.get()).toString()
+                    Objects.requireNonNull(itemStack.get(ModDataComponents.RELIC_XP.get())).toString()
             ));
         } else {
             builder.accept(Component.translatable(tooltipTranslationKey + ".more_info"));
