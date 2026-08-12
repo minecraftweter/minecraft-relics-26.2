@@ -9,12 +9,17 @@ import net.minecraftweter.minecraftrelics.item.ModDataComponents;
 import net.minecraftweter.minecraftrelics.item.relic.RelicAbility;
 import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 
-public class WindFeatherAbility implements RelicAbility {
+public class ReduceFallDamageAbility extends RelicAbility {
+    public final float startValue, levelBonusValue;
+    public ReduceFallDamageAbility(int activationLevel, float startValue, float levelBonusValue) {
+        super(activationLevel);
+        this.startValue = startValue;
+        this.levelBonusValue = levelBonusValue;
+    }
+
     @Override
-    public void onHurt(Player player, ItemStack relic, LivingIncomingDamageEvent damageEvent) {
-        damageEvent.setAmount(
-                damageEvent.getAmount() * (0.7f + ((relic.get(ModDataComponents.RELIC_LEVEL) - 1) * 0.02f))
-        );
+    public void onHurt(Player player, ItemStack stack, LivingIncomingDamageEvent damageEvent) {
+        damageEvent.setAmount(damageEvent.getAmount() * getMultiplier(stack));
     }
 
     @Override
@@ -22,8 +27,12 @@ public class WindFeatherAbility implements RelicAbility {
         return Component.translatable(
                 "tooltip." + MinecraftRelics.MOD_ID + ".ability.wind_feather",
                 Component.literal(
-                        (stack.get(ModDataComponents.RELIC_LEVEL) - 1) * 2 + 70 + "%"
+                        (int) (getMultiplier(stack) * 100) + "%"
                 ).withColor(TextColor.YELLOW)
         );
+    }
+
+    private float getMultiplier(ItemStack stack) {
+        return startValue + ((stack.get(ModDataComponents.RELIC_LEVEL) - activationLevel) * levelBonusValue);
     }
 }
