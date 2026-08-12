@@ -58,6 +58,8 @@ public class ModTranslationProvider extends LanguageProvider {
         add(RelicItem.tooltipTranslationKey + ".xp", "XP: %s");
         add(RelicItem.tooltipTranslationKey + ".level", "Level: %s");
         add(RelicItem.tooltipTranslationKey + ".more_info", "Press §eShift§r for more information!");
+
+        add(RelicItem.tooltipTranslationKey + ".ability.wind_feather", "Reduces fall damage by %s");
     }
 
     private static String formatName(String name) {
