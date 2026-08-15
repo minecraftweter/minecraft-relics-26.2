@@ -58,6 +58,9 @@ public class ModTranslationProvider extends LanguageProvider {
         add(RelicItem.tooltipTranslationKey + ".xp", "XP: %s");
         add(RelicItem.tooltipTranslationKey + ".level", "Level: %s");
         add(RelicItem.tooltipTranslationKey + ".more_info", "Press §eShift§r for more information!");
+
+        add("key." + MinecraftRelics.MOD_ID + ".relic_inventory", "Open/Close Relic Inventory");
+        add("key." + MinecraftRelics.MOD_ID + ".relic_inventory.info", "Press %s to open the Relic inventory!");
     }
 
     private static String formatName(String name) {

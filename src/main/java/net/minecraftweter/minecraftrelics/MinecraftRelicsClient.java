@@ -19,8 +19,17 @@ public class MinecraftRelicsClient {
 
     @SubscribeEvent
     static void onClientSetup(FMLClientSetupEvent event) {
-        // Some client setup code
-        MinecraftRelics.LOGGER.info("HELLO FROM CLIENT SETUP");
-        MinecraftRelics.LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
+
+    }
+
+    @SubscribeEvent
+    public static void onClientTick(ClientTickEvent.Post event) {
+        if(ModKeyMappings.PRESS_RELIC_INVENTORY.get().consumeClick()) {
+            // CLIENT
+            Player player = Minecraft.getInstance().player;
+            player.sendSystemMessage(Component.literal(
+                    "Inventory slot 1: " + player.getData(ModDataAttachments.RELIC_INVENTORY.get()).getResource(0)
+            ));
+        }
     }
 }
