@@ -1,5 +1,6 @@
 package net.minecraftweter.minecraftrelics;
 
+import net.minecraftweter.minecraftrelics.dataAttachment.ModDataAttachments;
 import net.minecraftweter.minecraftrelics.item.ModCreativeModeTabs;
 import net.minecraftweter.minecraftrelics.item.ModDataComponents;
 import net.minecraftweter.minecraftrelics.item.ModItems;
