@@ -1,14 +1,11 @@
 package net.minecraftweter.minecraftrelics.dataAttachment;
 
-import net.minecraft.world.item.ItemStack;
 import net.minecraftweter.minecraftrelics.MinecraftRelics;
+import net.minecraftweter.minecraftrelics.player.RelicInventory;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.attachment.AttachmentType;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
-import net.neoforged.neoforge.transfer.item.ItemResource;
-import net.neoforged.neoforge.transfer.item.ItemStacksResourceHandler;
-import org.jspecify.annotations.NonNull;
 
 import java.util.function.Supplier;
 
@@ -17,18 +14,8 @@ public class ModDataAttachments {
             NeoForgeRegistries.ATTACHMENT_TYPES, MinecraftRelics.MOD_ID
     );
 
-    public static final Supplier<AttachmentType<? extends ItemStacksResourceHandler>> RELIC_INVENTORY = DATA_ATTACHMENT_TYPES.register(
-            "relic_inventory", () -> AttachmentType.serializable(() -> new ItemStacksResourceHandler(6) {
-                @Override
-                protected int getCapacity(int index, @NonNull ItemResource resource) {
-                    return 1;
-                }
-
-                @Override
-                protected void onContentsChanged(int index, @NonNull ItemStack previousContents) {
-                    super.onContentsChanged(index, previousContents);
-                }
-            }).build()
+    public static final Supplier<AttachmentType<RelicInventory>> RELIC_INVENTORY = DATA_ATTACHMENT_TYPES.register(
+            "relic_inventory", () -> AttachmentType.serializable(() -> new RelicInventory(6)).build()
     );
 
     public static void register(IEventBus eventBus) {
