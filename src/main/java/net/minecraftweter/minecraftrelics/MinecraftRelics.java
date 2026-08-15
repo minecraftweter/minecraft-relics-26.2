@@ -30,6 +30,7 @@ public class MinecraftRelics {
         ModItems.register(modEventBus);
         ModDataComponents.register(modEventBus);
         ModCreativeModeTabs.register(modEventBus); // Na Blocks en Items
+        ModDataComponents.register(modEventBus);
 
         // Register ourselves for server and other game events we are interested in.
         // Note that this is necessary if and only if we want *this* class (MinecraftRelics) to respond directly to events.
