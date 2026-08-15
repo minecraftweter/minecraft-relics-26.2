@@ -29,9 +29,9 @@ public class MinecraftRelicsClient {
 
     @SubscribeEvent
     public static void onClientTick(ClientTickEvent.Post event) {
-        if(ModKeyMappings.PRESS_RELIC_INVENTORY.get().consumeClick()) {
-            // CLIENT
-            Player player = Minecraft.getInstance().player;
+        // CLIENT
+        Player player = Minecraft.getInstance().player;
+        if(ModKeyMappings.PRESS_RELIC_INVENTORY.get().consumeClick() && player != null) {
             player.sendSystemMessage(Component.literal(
                     "Inventory slot 1: " + player.getData(ModDataAttachments.RELIC_INVENTORY.get()).getResource(0)
             ));
