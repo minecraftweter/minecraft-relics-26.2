@@ -10,7 +10,6 @@ import net.minecraftweter.minecraftrelics.dataAttachment.ModDataAttachments;
 import net.minecraftweter.minecraftrelics.gui.ModMenuTypes;
 import net.minecraftweter.minecraftrelics.item.relic.RelicItem;
 import net.minecraftweter.minecraftrelics.player.RelicInventory;
-import net.neoforged.neoforge.transfer.access.ItemAccess;
 import net.neoforged.neoforge.transfer.item.ItemResource;
 import org.jspecify.annotations.NonNull;
 
@@ -28,8 +27,8 @@ public class RelicInventoryMenu extends AbstractContainerMenu {
 
         relicInventoryContainer = new SimpleContainer(RelicInventory.SIZE);
         for (int i = 0; i < RelicInventory.SIZE; i++) {
-            ItemAccess itemAccess = ItemAccess.forHandlerIndex(relicInventory, i);
-            relicInventoryContainer.setItem(i, new ItemStack(itemAccess.getResource().getItem(), itemAccess.getAmount()));
+            ItemStack stack = relicInventory.getResource(i).toStack();
+            relicInventoryContainer.setItem(i, stack);
         }
 
         addSlot(relicInventoryContainer, 0, 58, 21);
@@ -76,7 +75,7 @@ public class RelicInventoryMenu extends AbstractContainerMenu {
         super.removed(player);
 
         for (int i = 0; i < RelicInventory.SIZE; i++) {
-            ItemStack stack = relicInventoryContainer.getItem(i);
+            ItemStack stack = relicInventoryContainer.getItem(i).copy();
             if(!stack.isEmpty()) {
                 relicInventory.set(i, ItemResource.of(stack), 1);
             } else {
