@@ -61,6 +61,11 @@ public class ModTranslationProvider extends LanguageProvider {
 
         add(RelicItem.tooltipTranslationKey + ".ability.reduce_fall_damage", "Reduces fall damage by %s");
         add(RelicItem.tooltipTranslationKey + ".ability.increase_movement_speed", "Increases movement speed by %s");
+
+        add("key." + MinecraftRelics.MOD_ID + ".relic_inventory", "Open/Close Relic Inventory");
+        add("key." + MinecraftRelics.MOD_ID + ".relic_inventory.info", "Press %s to open the Relic inventory!");
+
+        add("menu." + MinecraftRelics.MOD_ID + ".relic_inventory", "Relic Inventory");
     }
 
     private static String formatName(String name) {
