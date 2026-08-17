@@ -10,9 +10,10 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraftweter.minecraftrelics.MinecraftRelics;
-import net.minecraftweter.minecraftrelics.item.ModDataComponents;
+import net.minecraftweter.minecraftrelics.data.ModDataComponents;
 import org.jspecify.annotations.NonNull;
 
+import java.util.Objects;
 import java.util.function.Consumer;
 
 public class RelicItem extends Item {
@@ -61,10 +62,10 @@ public class RelicItem extends Item {
             }
             builder.accept(Component.empty());
             builder.accept(Component.translatable(tooltipTranslationKey + ".level",
-                    itemStack.get(ModDataComponents.RELIC_LEVEL.get()).toString()
+                    Objects.requireNonNull(itemStack.get(ModDataComponents.RELIC_LEVEL.get())).toString()
             ));
             builder.accept(Component.translatable(tooltipTranslationKey + ".xp",
-                    itemStack.get(ModDataComponents.RELIC_XP.get()).toString()
+                    Objects.requireNonNull(itemStack.get(ModDataComponents.RELIC_XP.get())).toString()
             ));
         } else {
             builder.accept(Component.translatable(tooltipTranslationKey + ".more_info"));

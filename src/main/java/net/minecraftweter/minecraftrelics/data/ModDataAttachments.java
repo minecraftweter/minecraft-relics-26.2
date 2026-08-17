@@ -1,4 +1,4 @@
-package net.minecraftweter.minecraftrelics.dataAttachment;
+package net.minecraftweter.minecraftrelics.data;
 
 import net.minecraftweter.minecraftrelics.MinecraftRelics;
 import net.minecraftweter.minecraftrelics.player.RelicInventory;

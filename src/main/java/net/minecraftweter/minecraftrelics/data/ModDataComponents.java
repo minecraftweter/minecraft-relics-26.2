@@ -1,4 +1,4 @@
-package net.minecraftweter.minecraftrelics.item;
+package net.minecraftweter.minecraftrelics.data;
 
 import com.mojang.serialization.Codec;
 import net.minecraft.core.component.DataComponentType;

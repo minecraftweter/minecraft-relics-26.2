@@ -3,7 +3,7 @@ package net.minecraftweter.minecraftrelics.item.relic;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftweter.minecraftrelics.item.ModDataComponents;
+import net.minecraftweter.minecraftrelics.data.ModDataComponents;
 import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 import net.neoforged.neoforge.event.entity.player.AttackEntityEvent;

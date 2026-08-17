@@ -1,10 +1,10 @@
 package net.minecraftweter.minecraftrelics;
 
 import com.mojang.logging.LogUtils;
-import net.minecraftweter.minecraftrelics.dataAttachment.ModDataAttachments;
+import net.minecraftweter.minecraftrelics.data.ModDataAttachments;
 import net.minecraftweter.minecraftrelics.gui.ModMenuTypes;
 import net.minecraftweter.minecraftrelics.item.ModCreativeModeTabs;
-import net.minecraftweter.minecraftrelics.item.ModDataComponents;
+import net.minecraftweter.minecraftrelics.data.ModDataComponents;
 import net.minecraftweter.minecraftrelics.item.ModItems;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;

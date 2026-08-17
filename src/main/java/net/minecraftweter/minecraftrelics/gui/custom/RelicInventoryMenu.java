@@ -6,7 +6,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftweter.minecraftrelics.dataAttachment.ModDataAttachments;
+import net.minecraftweter.minecraftrelics.data.ModDataAttachments;
 import net.minecraftweter.minecraftrelics.gui.ModMenuTypes;
 import net.minecraftweter.minecraftrelics.item.relic.RelicItem;
 import net.minecraftweter.minecraftrelics.player.RelicInventory;
