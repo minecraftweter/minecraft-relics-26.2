@@ -1,6 +1,5 @@
 package net.minecraftweter.minecraftrelics.gui.custom;
 
-import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -18,10 +17,6 @@ import org.jspecify.annotations.NonNull;
 public class RelicInventoryMenu extends AbstractContainerMenu {
     private final RelicInventory relicInventory;
     private final SimpleContainer relicInventoryContainer;
-
-    public RelicInventoryMenu(int containerId, Inventory inv, FriendlyByteBuf buf) {
-        this(containerId, inv);
-    }
 
     public RelicInventoryMenu(int containerId, Inventory playerInventory) {
         super(ModMenuTypes.RELIC_INVENTORY_MENU.get(), containerId);
@@ -48,7 +43,7 @@ public class RelicInventoryMenu extends AbstractContainerMenu {
     private void addSlot(SimpleContainer container, int slot, int x, int y) {
         this.addSlot(new Slot(container, slot, x, y) {
             @Override
-            public boolean mayPlace(ItemStack itemStack) {
+            public boolean mayPlace(@NonNull ItemStack itemStack) {
                 if(!(itemStack.getItem() instanceof RelicItem)) {
                     return false;
                 }
@@ -77,7 +72,7 @@ public class RelicInventoryMenu extends AbstractContainerMenu {
     }
 
     @Override
-    public void removed(Player player) {
+    public void removed(@NonNull Player player) {
         super.removed(player);
 
         for (int i = 0; i < RelicInventory.SIZE; i++) {
@@ -111,9 +106,9 @@ public class RelicInventoryMenu extends AbstractContainerMenu {
     // THIS YOU HAVE TO DEFINE!
     private static final int TE_INVENTORY_SLOT_COUNT = RelicInventory.SIZE;  // must be the number of slots you have!
     @Override
-    public ItemStack quickMoveStack(Player playerIn, int pIndex) {
+    public @NonNull ItemStack quickMoveStack(@NonNull Player playerIn, int pIndex) {
         Slot sourceSlot = slots.get(pIndex);
-        if (sourceSlot == null || !sourceSlot.hasItem()) return ItemStack.EMPTY;  //EMPTY_ITEM
+        if (!sourceSlot.hasItem()) return ItemStack.EMPTY;  //EMPTY_ITEM
         ItemStack sourceStack = sourceSlot.getItem();
         ItemStack copyOfSourceStack = sourceStack.copy();
 

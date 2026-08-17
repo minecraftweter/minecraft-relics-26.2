@@ -5,6 +5,7 @@ import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.Identifier;
 import net.minecraftweter.minecraftrelics.MinecraftRelics;
+import org.jspecify.annotations.NonNull;
 
 public record ToggleRelicInventoryPacketC2S() implements CustomPacketPayload {
     public static final Type<ToggleRelicInventoryPacketC2S> TYPE = new Type<>(
@@ -16,7 +17,7 @@ public record ToggleRelicInventoryPacketC2S() implements CustomPacketPayload {
     );
 
     @Override
-    public Type<? extends CustomPacketPayload> type() {
+    public @NonNull Type<? extends CustomPacketPayload> type() {
         return TYPE;
     }
 }

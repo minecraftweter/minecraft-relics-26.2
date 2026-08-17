@@ -1,7 +1,5 @@
 package net.minecraftweter.minecraftrelics.gui.custom;
 
-import com.mojang.blaze3d.buffers.GpuBufferSlice;
-import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.RenderPipelines;
@@ -9,6 +7,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraftweter.minecraftrelics.MinecraftRelics;
+import org.jspecify.annotations.NonNull;
 
 public class RelicInventoryScreen extends AbstractContainerScreen<RelicInventoryMenu> {
     private static final Identifier GUI_TEXTURE = Identifier.fromNamespaceAndPath(
@@ -19,7 +18,7 @@ public class RelicInventoryScreen extends AbstractContainerScreen<RelicInventory
     }
 
     @Override
-    public void extractBackground(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float a) {
+    public void extractBackground(@NonNull GuiGraphicsExtractor graphics, int mouseX, int mouseY, float a) {
         super.extractBackground(graphics, mouseX, mouseY, a);
 
         graphics.blit(

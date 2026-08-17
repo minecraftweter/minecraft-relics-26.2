@@ -17,8 +17,9 @@ public class ModModelProvider extends ModelProvider {
     }
 
     @Override
-    protected void registerModels(@NonNull BlockModelGenerators blockModels,
-                                  @NonNull ItemModelGenerators itemModels
+    protected void registerModels(
+            @NonNull BlockModelGenerators blockModels,
+            @NonNull ItemModelGenerators itemModels
     ) {
         for (Item item : BuiltInRegistries.ITEM) {
             if (item instanceof RelicItem) {

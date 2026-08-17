@@ -8,6 +8,7 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraftweter.minecraftrelics.MinecraftRelics;
 import net.minecraftweter.minecraftrelics.gui.custom.RelicInventoryMenu;
 import net.neoforged.neoforge.transfer.item.ItemStacksResourceHandler;
+import org.jspecify.annotations.NonNull;
 import org.jspecify.annotations.Nullable;
 
 public class RelicInventory extends ItemStacksResourceHandler implements MenuProvider {
@@ -17,12 +18,12 @@ public class RelicInventory extends ItemStacksResourceHandler implements MenuPro
     }
 
     @Override
-    public Component getDisplayName() {
+    public @NonNull Component getDisplayName() {
         return Component.translatable("menu." + MinecraftRelics.MOD_ID + ".relic_inventory");
     }
 
     @Override
-    public @Nullable AbstractContainerMenu createMenu(int i, Inventory inventory, Player player) {
+    public @Nullable AbstractContainerMenu createMenu(int i, @NonNull Inventory inventory, @NonNull Player player) {
         return new RelicInventoryMenu(i, inventory);
     }
 
