@@ -2,19 +2,26 @@ package net.minecraftweter.minecraftrelics.keymapping;
 
 import com.mojang.blaze3d.platform.InputConstants;
 import net.minecraft.client.KeyMapping;
+import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftweter.minecraftrelics.MinecraftRelics;
+import net.minecraftweter.minecraftrelics.gui.custom.RelicInventoryScreen;
+import net.minecraftweter.minecraftrelics.networking.packet.ToggleRelicInventoryPacketC2S;
+import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.client.event.ClientTickEvent;
 import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
+import net.neoforged.neoforge.client.event.ScreenEvent;
+import net.neoforged.neoforge.client.network.ClientPacketDistributor;
 import net.neoforged.neoforge.common.util.Lazy;
 import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
 import org.lwjgl.glfw.GLFW;
 
 import java.util.Arrays;
 
-@EventBusSubscriber
+@EventBusSubscriber(modid = MinecraftRelics.MOD_ID, value = Dist.CLIENT)
 public class ModKeyMappings {
     public static final Lazy<KeyMapping> PRESS_RELIC_INVENTORY = Lazy.of(() -> new KeyMapping(
             "key." + MinecraftRelics.MOD_ID + ".relic_inventory",
@@ -36,6 +43,24 @@ public class ModKeyMappings {
                     "key." + MinecraftRelics.MOD_ID + ".relic_inventory.info",
                     getKeyString(PRESS_RELIC_INVENTORY.get().getKey())
             ));
+        }
+    }
+
+    @SubscribeEvent
+    public static void onClientTick(ClientTickEvent.Post event) {
+        // CLIENT
+        Player player = Minecraft.getInstance().player;
+        if(ModKeyMappings.PRESS_RELIC_INVENTORY.get().consumeClick() && player != null) {
+            ClientPacketDistributor.sendToServer(new ToggleRelicInventoryPacketC2S());
+        }
+    }
+
+    @SubscribeEvent
+    public static void onScreenKeyPressed(ScreenEvent.KeyPressed.Post event) {
+        if(event.getScreen() instanceof RelicInventoryScreen) {
+            if (event.getKeyCode() == ModKeyMappings.PRESS_RELIC_INVENTORY.get().getKey().getValue()) {
+                ClientPacketDistributor.sendToServer(new ToggleRelicInventoryPacketC2S());
+            }
         }
     }
 
