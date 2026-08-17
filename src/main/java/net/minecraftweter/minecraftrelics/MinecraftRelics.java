@@ -1,22 +1,21 @@
 package net.minecraftweter.minecraftrelics;
 
+import com.mojang.logging.LogUtils;
 import net.minecraftweter.minecraftrelics.dataAttachment.ModDataAttachments;
+import net.minecraftweter.minecraftrelics.gui.ModMenuTypes;
 import net.minecraftweter.minecraftrelics.item.ModCreativeModeTabs;
 import net.minecraftweter.minecraftrelics.item.ModDataComponents;
 import net.minecraftweter.minecraftrelics.item.ModItems;
-import org.slf4j.Logger;
-
-import com.mojang.logging.LogUtils;
-
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
-import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
+import org.slf4j.Logger;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(MinecraftRelics.MOD_ID)
@@ -32,6 +31,7 @@ public class MinecraftRelics {
         ModDataComponents.register(modEventBus);
         ModCreativeModeTabs.register(modEventBus); // Na Blocks en Items
         ModDataAttachments.register(modEventBus);
+        ModMenuTypes.register(modEventBus);
 
         NeoForge.EVENT_BUS.register(this);
         modEventBus.addListener(this::addCreative);
