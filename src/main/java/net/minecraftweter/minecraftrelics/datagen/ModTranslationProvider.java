@@ -61,6 +61,8 @@ public class ModTranslationProvider extends LanguageProvider {
 
         add("key." + MinecraftRelics.MOD_ID + ".relic_inventory", "Open/Close Relic Inventory");
         add("key." + MinecraftRelics.MOD_ID + ".relic_inventory.info", "Press %s to open the Relic inventory!");
+
+        add("menu." + MinecraftRelics.MOD_ID + ".relic_inventory", "Relic Inventory");
     }
 
     private static String formatName(String name) {
