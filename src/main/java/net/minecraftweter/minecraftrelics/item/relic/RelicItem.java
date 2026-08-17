@@ -47,9 +47,11 @@ public class RelicItem extends Item {
     }
 
     @Override
-    public void appendHoverText(@NonNull ItemStack itemStack, @NonNull TooltipContext context,
-                                @NonNull TooltipDisplay display, @NonNull Consumer<Component> builder,
-                                @NonNull TooltipFlag tooltipFlag
+    @SuppressWarnings("deprecation")
+    public void appendHoverText(
+            @NonNull ItemStack itemStack, @NonNull TooltipContext context,
+            @NonNull TooltipDisplay display, @NonNull Consumer<Component> builder,
+            @NonNull TooltipFlag tooltipFlag
     ) {
         if(Minecraft.getInstance().hasShiftDown()) {
             builder.accept(Component.translatable(tooltipTranslationKey + ".rarity", rarity.name));

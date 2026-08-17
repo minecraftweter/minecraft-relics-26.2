@@ -23,7 +23,7 @@ public abstract class RelicAbility {
     public void onUnequip(Player player, ItemStack stack) {}
 
     public boolean isActive(ItemStack stack) {
-        return stack.get(ModDataComponents.RELIC_LEVEL) >= this.activationLevel;
+        return stack.getOrDefault(ModDataComponents.RELIC_LEVEL, 1) >= this.activationLevel;
     }
 
     public abstract Component getTranslationComponent(ItemStack stack);

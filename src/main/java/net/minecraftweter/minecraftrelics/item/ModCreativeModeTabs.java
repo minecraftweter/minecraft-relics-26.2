@@ -18,6 +18,7 @@ public class ModCreativeModeTabs {
             Registries.CREATIVE_MODE_TAB, MinecraftRelics.MOD_ID
     );
 
+    @SuppressWarnings("unused")
     public static final Supplier<CreativeModeTab> RELICS = CREATIVE_MODE_TABS.register("relics",
             () -> CreativeModeTab.builder()
                     .icon(() -> new ItemStack(ModItems.WIND_FEATHER_RELIC.get()))

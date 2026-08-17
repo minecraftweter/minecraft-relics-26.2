@@ -19,8 +19,8 @@ public class ReduceFallDamageAbility extends RelicAbility {
     }
 
     @Override
-    public void onHurt(Player player, ItemStack stack, LivingIncomingDamageEvent damageEvent) {
-        damageEvent.setAmount(damageEvent.getAmount() * getMultiplier(stack));
+    public void onHurt(Player player, ItemStack stack, LivingIncomingDamageEvent event) {
+        event.setAmount(event.getAmount() * getMultiplier(stack));
     }
 
     @Override
@@ -34,6 +34,9 @@ public class ReduceFallDamageAbility extends RelicAbility {
     }
 
     private float getMultiplier(ItemStack stack) {
-        return Math.min(startValue + ((stack.get(ModDataComponents.RELIC_LEVEL) - activationLevel) * levelBonusValue), maxValue);
+        return Math.min(
+                startValue + ((stack.getOrDefault(ModDataComponents.RELIC_LEVEL, 1) - activationLevel) * levelBonusValue),
+                maxValue
+        );
     }
 }
