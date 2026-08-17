@@ -15,7 +15,7 @@ public class ModDataAttachments {
     );
 
     public static final Supplier<AttachmentType<RelicInventory>> RELIC_INVENTORY = DATA_ATTACHMENT_TYPES.register(
-            "relic_inventory", () -> AttachmentType.serializable(() -> new RelicInventory(6)).build()
+            "relic_inventory", () -> AttachmentType.serializable(RelicInventory::new).build()
     );
 
     public static void register(IEventBus eventBus) {
