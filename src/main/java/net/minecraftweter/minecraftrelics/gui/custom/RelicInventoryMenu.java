@@ -1,6 +1,5 @@
 package net.minecraftweter.minecraftrelics.gui.custom;
 
-import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -10,37 +9,29 @@ import net.minecraftweter.minecraftrelics.data.ModDataAttachments;
 import net.minecraftweter.minecraftrelics.gui.ModMenuTypes;
 import net.minecraftweter.minecraftrelics.item.relic.RelicItem;
 import net.minecraftweter.minecraftrelics.player.RelicInventory;
-import net.neoforged.neoforge.transfer.item.ItemResource;
+import net.neoforged.neoforge.transfer.item.ResourceHandlerSlot;
 import org.jspecify.annotations.NonNull;
 
 public class RelicInventoryMenu extends AbstractContainerMenu {
-    private final RelicInventory relicInventory;
-    private final SimpleContainer relicInventoryContainer;
 
-    public RelicInventoryMenu(int containerId, Inventory playerInventory) {
+    public RelicInventoryMenu(int containerId, Inventory playerInv) {
         super(ModMenuTypes.RELIC_INVENTORY_MENU.get(), containerId);
-        Player player = playerInventory.player;
-        relicInventory = player.getData(ModDataAttachments.RELIC_INVENTORY.get());
+        Player player = playerInv.player;
+        RelicInventory relicInv = player.getData(ModDataAttachments.RELIC_INVENTORY.get());
 
-        addPlayerInventory(playerInventory);
-        addPlayerHotbar(playerInventory);
+        addPlayerInventory(playerInv);
+        addPlayerHotbar(playerInv);
 
-        relicInventoryContainer = new SimpleContainer(RelicInventory.SIZE);
-        for (int i = 0; i < RelicInventory.SIZE; i++) {
-            ItemStack stack = relicInventory.getResource(i).toStack();
-            relicInventoryContainer.setItem(i, stack);
-        }
-
-        addSlot(relicInventoryContainer, 0, 58, 21);
-        addSlot(relicInventoryContainer, 1, 80, 21);
-        addSlot(relicInventoryContainer, 2, 102, 21);
-        addSlot(relicInventoryContainer, 3, 58, 45);
-        addSlot(relicInventoryContainer, 4, 80, 45);
-        addSlot(relicInventoryContainer, 5, 102, 45);
+        addRelicSlot(relicInv, 0, 58, 21);
+        addRelicSlot(relicInv, 1, 80, 21);
+        addRelicSlot(relicInv, 2, 102, 21);
+        addRelicSlot(relicInv, 3, 58, 45);
+        addRelicSlot(relicInv, 4, 80, 45);
+        addRelicSlot(relicInv, 5, 102, 45);
     }
 
-    private void addSlot(SimpleContainer container, int slot, int x, int y) {
-        this.addSlot(new Slot(container, slot, x, y) {
+    private void addRelicSlot(RelicInventory inv, int slot, int x, int y) {
+        this.addSlot(new ResourceHandlerSlot(inv, inv::set, slot, x, y) {
             @Override
             public boolean mayPlace(@NonNull ItemStack itemStack) {
                 if(!(itemStack.getItem() instanceof RelicItem)) {
@@ -68,22 +59,6 @@ public class RelicInventoryMenu extends AbstractContainerMenu {
         for (int i = 0; i < 9; ++i) {
             this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 142));
         }
-    }
-
-    @Override
-    public void removed(@NonNull Player player) {
-        super.removed(player);
-
-        for (int i = 0; i < RelicInventory.SIZE; i++) {
-            ItemStack stack = relicInventoryContainer.getItem(i).copy();
-            if(!stack.isEmpty()) {
-                relicInventory.set(i, ItemResource.of(stack), 1);
-            } else {
-                relicInventory.set(i, ItemResource.EMPTY, 0);
-            }
-        }
-
-        player.setData(ModDataAttachments.RELIC_INVENTORY.get(), relicInventory);
     }
 
     /* CREDIT GOES TO: diesieben07 | https://github.com/diesieben07/SevenCommons

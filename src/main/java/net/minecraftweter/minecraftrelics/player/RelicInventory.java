@@ -17,6 +17,8 @@ public class RelicInventory extends ItemStacksResourceHandler implements MenuPro
         super(SIZE);
     }
 
+    /* MENU */
+
     @Override
     public @NonNull Component getDisplayName() {
         return Component.translatable("menu." + MinecraftRelics.MOD_ID + ".relic_inventory");
