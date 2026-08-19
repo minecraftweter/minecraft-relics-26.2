@@ -15,12 +15,9 @@ public abstract class RelicAbility {
         this.activationLevel = activationLevel;
     }
 
-    public void onUse(Player player, ItemStack stack) {}
     public void onAttack(Player player, ItemStack stack, AttackEntityEvent event) {}
     public void onHurt(Player player, ItemStack stack, LivingIncomingDamageEvent event) {}
     public void onKill(Player player, ItemStack stack, LivingDeathEvent event) {}
-    public void onEquip(Player player, ItemStack stack) {}
-    public void onUnequip(Player player, ItemStack stack) {}
 
     public boolean isActive(ItemStack stack) {
         return stack.getOrDefault(ModDataComponents.RELIC_LEVEL, 1) >= this.activationLevel;
