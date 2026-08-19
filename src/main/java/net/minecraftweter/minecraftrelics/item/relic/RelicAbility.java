@@ -8,6 +8,7 @@ import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 import net.neoforged.neoforge.event.entity.player.AttackEntityEvent;
 
+@SuppressWarnings("unused")
 public abstract class RelicAbility {
     public final int activationLevel;
     public RelicAbility(int activationLevel) {
