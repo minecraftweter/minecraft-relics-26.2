@@ -2,6 +2,7 @@ package net.minecraftweter.minecraftrelics.item.relic.ability;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextColor;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftweter.minecraftrelics.MinecraftRelics;
@@ -20,7 +21,9 @@ public class ReduceFallDamageAbility extends RelicAbility {
 
     @Override
     public void onHurt(Player player, ItemStack stack, LivingIncomingDamageEvent event) {
-        event.setAmount(event.getAmount() * getMultiplier(stack));
+        if(event.getSource().is(DamageTypes.FALL)) {
+            event.setAmount(event.getAmount() * getMultiplier(stack));
+        }
     }
 
     @Override
@@ -28,13 +31,13 @@ public class ReduceFallDamageAbility extends RelicAbility {
         return Component.translatable(
                 "tooltip." + MinecraftRelics.MOD_ID + ".ability.reduce_fall_damage",
                 Component.literal(
-                        (int) (getMultiplier(stack) * 100) + "%"
+                        100 - (int) (getMultiplier(stack) * 100) + "%"
                 ).withColor(TextColor.YELLOW)
         );
     }
 
     private float getMultiplier(ItemStack stack) {
-        return Math.min(
+        return 1 - Math.min(
                 startValue + ((stack.getOrDefault(ModDataComponents.RELIC_LEVEL, 1) - activationLevel) * levelBonusValue),
                 maxValue
         );
