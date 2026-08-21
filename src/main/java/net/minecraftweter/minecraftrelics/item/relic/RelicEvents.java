@@ -11,7 +11,7 @@ import net.neoforged.neoforge.event.entity.player.AttackEntityEvent;
 @EventBusSubscriber(modid = MinecraftRelics.MOD_ID)
 public final class RelicEvents {
     @SubscribeEvent
-    public static void onHurt(LivingIncomingDamageEvent event) {
+    public static void damageEvent(LivingIncomingDamageEvent event) {
         if(event.getEntity() instanceof Player player) {
             if(player.level().isClientSide()) return;
             RelicItem.callAbilityMethods(player, (relicAbility,  itemStack) -> {
@@ -21,7 +21,7 @@ public final class RelicEvents {
     }
 
     @SubscribeEvent
-    public static void onAttack(AttackEntityEvent event) {
+    public static void attackEvent(AttackEntityEvent event) {
         Player player = event.getEntity();
         if(player.level().isClientSide()) return;
         RelicItem.callAbilityMethods(player, (relicAbility, itemStack) -> {
@@ -30,7 +30,7 @@ public final class RelicEvents {
     }
 
     @SubscribeEvent
-    public static void onKill(LivingDeathEvent event) {
+    public static void deathEvent(LivingDeathEvent event) {
         if(event.getSource().getEntity() instanceof Player player) {
             if(player.level().isClientSide()) return;
             RelicItem.callAbilityMethods(player, (relicAbility, itemStack) -> {

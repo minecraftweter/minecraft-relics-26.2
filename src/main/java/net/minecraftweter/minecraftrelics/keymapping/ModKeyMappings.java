@@ -47,7 +47,6 @@ public class ModKeyMappings {
     }
 
     @SubscribeEvent
-    public static void onClientTick(ClientTickEvent.Post event) {
         // CLIENT
         Player player = Minecraft.getInstance().player;
         if(ModKeyMappings.PRESS_RELIC_INVENTORY.get().consumeClick() && player != null) {
@@ -56,7 +55,7 @@ public class ModKeyMappings {
     }
 
     @SubscribeEvent
-    public static void onScreenKeyPressed(ScreenEvent.KeyPressed.Post event) {
+    public static void handleScreenKeyPress(ScreenEvent.KeyPressed.Post event) {
         if(event.getScreen() instanceof RelicInventoryScreen) {
             if (event.getKeyCode() == ModKeyMappings.PRESS_RELIC_INVENTORY.get().getKey().getValue()) {
                 ClientPacketDistributor.sendToServer(new ToggleRelicInventoryPacketC2S());
