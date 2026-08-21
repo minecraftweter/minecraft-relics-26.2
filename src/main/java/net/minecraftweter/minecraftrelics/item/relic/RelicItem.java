@@ -16,7 +16,6 @@ import net.minecraftweter.minecraftrelics.data.ModDataComponents;
 import net.minecraftweter.minecraftrelics.player.RelicInventory;
 import org.jspecify.annotations.NonNull;
 
-import java.util.Arrays;
 import java.util.Objects;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
@@ -84,13 +83,7 @@ public class RelicItem extends Item {
 
     public static void callAbilityMethods(Player player, BiConsumer<RelicAbility, ItemStack> consumer) {
         RelicInventory relicInventory = player.getData(ModDataAttachments.RELIC_INVENTORY.get());
-        ItemStack[] stacks = new ItemStack[relicInventory.size()];
-        for(int i = 0; i < relicInventory.size(); i++) {
-            ItemStack stack = relicInventory.getResource(i).toStack();
-            stacks[i] = stack;
-        }
-
-        Arrays.stream(stacks).filter(stack -> !stack.isEmpty()).collect(Collectors.toMap(
+        relicInventory.copyToList().stream().filter(stack -> !stack.isEmpty()).collect(Collectors.toMap(
                 ItemStack::getItem,
                 Function.identity(),
                 (a, b) -> a.getOrDefault(ModDataComponents.RELIC_LEVEL.get(), 1)
