@@ -21,6 +21,7 @@ import org.lwjgl.glfw.GLFW;
 
 import java.util.Arrays;
 
+// CLIENT EVENTS ONLY
 @EventBusSubscriber(modid = MinecraftRelics.MOD_ID, value = Dist.CLIENT)
 public class ModKeyMappings {
     public static final Lazy<KeyMapping> PRESS_RELIC_INVENTORY = Lazy.of(() -> new KeyMapping(
@@ -30,6 +31,8 @@ public class ModKeyMappings {
             KeyMapping.Category.INVENTORY
 
     ));
+
+    /* EVENTS */
 
     @SubscribeEvent
     public static void registerKeyMappings(RegisterKeyMappingsEvent event) {
@@ -47,7 +50,7 @@ public class ModKeyMappings {
     }
 
     @SubscribeEvent
-        // CLIENT
+    public static void handleKeyPress(ClientTickEvent.Post event) {
         Player player = Minecraft.getInstance().player;
         if(ModKeyMappings.PRESS_RELIC_INVENTORY.get().consumeClick() && player != null) {
             ClientPacketDistributor.sendToServer(new ToggleRelicInventoryPacketC2S());

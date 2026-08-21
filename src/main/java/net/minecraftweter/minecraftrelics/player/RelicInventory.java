@@ -38,6 +38,8 @@ public class RelicInventory extends ItemStacksResourceHandler implements MenuPro
         return new RelicInventoryMenu(i, inventory);
     }
 
+    /* Events */
+
     @SubscribeEvent
     public static void playerDeathEvent(LivingDeathEvent event) {
         LivingEntity entity = event.getEntity();

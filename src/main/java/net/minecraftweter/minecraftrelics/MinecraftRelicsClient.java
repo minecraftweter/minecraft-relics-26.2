@@ -15,6 +15,7 @@ import net.neoforged.neoforge.network.registration.HandlerThread;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 
 @Mod(value = MinecraftRelics.MOD_ID, dist = Dist.CLIENT)
+// CLIENT EVENTS ONLY
 @EventBusSubscriber(modid = MinecraftRelics.MOD_ID, value = Dist.CLIENT)
 public class MinecraftRelicsClient {
     public MinecraftRelicsClient(ModContainer container) {

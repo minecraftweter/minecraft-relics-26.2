@@ -6,6 +6,7 @@ import net.minecraft.world.inventory.MenuType;
 import net.minecraftweter.minecraftrelics.MinecraftRelics;
 import net.minecraftweter.minecraftrelics.gui.custom.RelicInventoryMenu;
 import net.minecraftweter.minecraftrelics.gui.custom.RelicInventoryScreen;
+import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -13,7 +14,8 @@ import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-@EventBusSubscriber(modid = MinecraftRelics.MOD_ID)
+// CLIENT EVENTS ONLY
+@EventBusSubscriber(modid = MinecraftRelics.MOD_ID, value = Dist.CLIENT)
 public class ModMenuTypes {
     public static final DeferredRegister<MenuType<?>> MENU_TYPES = DeferredRegister.create(
             Registries.MENU, MinecraftRelics.MOD_ID
@@ -27,6 +29,8 @@ public class ModMenuTypes {
     public static void register(IEventBus eventBus) {
         MENU_TYPES.register(eventBus);
     }
+
+    /* EVENTS */
 
     @SubscribeEvent
     public static void registerScreens(RegisterMenuScreensEvent event) {
